@@ -1,4 +1,4 @@
-# Proje1_Web
+# Web_Yapay Zeka
 PROJENİN TASARIM VE ORGANİZASYON BÖLÜMÜ
 Takım Kaptanı : Emre SAYDAM
 Yazılım Sorumlusu : Halil YİĞİT
