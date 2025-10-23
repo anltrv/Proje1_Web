@@ -1,3 +1,24 @@
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+  // Firebase Entegrasyonu 
+  // Firebase JS SDK v7.20.0
+  const firebaseConfig = {
+    apiKey: "AIzaSyC1Az4Cyuh3J1bErm9ToJ2fBO_wnm75xvQ",
+    authDomain: "hukukbul-8ae5f.firebaseapp.com",
+    projectId: "hukukbul-8ae5f",
+    storageBucket: "hukukbul-8ae5f.firebasestorage.app",
+    messagingSenderId: "633358040081",
+    appId: "1:633358040081:web:b89e4506330b2edc9e45b0",
+    measurementId: "G-KGVCWENNLB"
+  };
+
+  // Firebase İndirme 
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+
 // <button> #12 -> onclick
 showSection('home')
 
@@ -390,3 +411,4 @@ sendContactMessage(event)
 
 // <button> #1277 -> onclick
 closeFAQ()
+
