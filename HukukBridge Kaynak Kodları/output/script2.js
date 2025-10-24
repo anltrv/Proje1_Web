@@ -1,7 +1,15 @@
-// Global Variables
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
+
+
+// Evrensel  Veritabanı
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         let currentUser = null;
         
         // İl-İlçe Veritabanı
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         const cityDistricts = {
             'İstanbul': ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar', 'Bahçelievler', 'Bakırköy', 'Başakşehir', 'Bayrampaşa', 'Beşiktaş', 'Beykoz', 'Beylikdüzü', 'Beyoğlu', 'Büyükçekmece', 'Çatalca', 'Çekmeköy', 'Esenler', 'Esenyurt', 'Eyüpsultan', 'Fatih', 'Gaziosmanpaşa', 'Güngören', 'Kadıköy', 'Kağıthane', 'Kartal', 'Küçükçekmece', 'Maltepe', 'Pendik', 'Sancaktepe', 'Sarıyer', 'Silivri', 'Sultanbeyli', 'Sultangazi', 'Şile', 'Şişli', 'Tuzla', 'Ümraniye', 'Üsküdar', 'Zeytinburnu'],
             'Ankara': ['Akyurt', 'Altındağ', 'Ayaş', 'Bala', 'Beypazarı', 'Çamlıdere', 'Çankaya', 'Çubuk', 'Elmadağ', 'Etimesgut', 'Evren', 'Gölbaşı', 'Güdül', 'Haymana', 'Kalecik', 'Kazan', 'Keçiören', 'Kızılcahamam', 'Mamak', 'Nallıhan', 'Polatlı', 'Pursaklar', 'Sincan', 'Şereflikoçhisar', 'Yenimahalle'],
@@ -100,22 +108,27 @@
         let lawyerNotifications = [];
         let currentChat = null;
         let chatMessages = [];
-        let clientChats = []; // Store client's active chats
+        let clientChats = []; // Sitede Chat Aktivasyonu
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
 
-        // İl-İlçe Functions
+        // İl-İlçe Bilgileri
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         function updateDistricts(citySelectId, districtSelectId) {
             const citySelect = document.getElementById(citySelectId);
             const districtSelect = document.getElementById(districtSelectId);
             const selectedCity = citySelect.value;
             
-            // Clear district options
+            // Temiz Seçim Bölümü
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             districtSelect.innerHTML = '<option value="">Tüm İlçeler</option>';
             
             if (selectedCity && cityDistricts[selectedCity]) {
-                // Enable district select
+                // Aktif Seçim Bölümü
+                     //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 districtSelect.disabled = false;
                 
-                // Add districts for selected city
+                // Site Ekleme Bölümü
+                     //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 cityDistricts[selectedCity].forEach(district => {
                     const option = document.createElement('option');
                     option.value = district;
@@ -123,23 +136,27 @@
                     districtSelect.appendChild(option);
                 });
             } else {
-                // Disable district select if no city selected
+                //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 districtSelect.disabled = true;
                 districtSelect.innerHTML = '<option value="">Önce il seçin</option>';
             }
         }
 
-        // Navigation and Section Management
+        // Navigasyon ve Seçme Bölümü
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         function showSection(sectionName) {
-            // Hide all sections
+            // Bütün seçenekleri Gizleme
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.add('hidden'));
             
-            // Show selected section
+            // Seçilenleri Gösterme
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             document.getElementById(sectionName + '-section').classList.remove('hidden');
         }
 
-        // Client Authentication Functions
+        // Siteye Giriş Bölümü
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         function showClientLogin() {
             document.getElementById('client-login-form').classList.remove('hidden');
             document.getElementById('client-register-form').classList.add('hidden');
@@ -160,7 +177,8 @@
                 return;
             }
             
-            // Get stored client data
+            // Datayı Depodan Alma
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             const storedData = localStorage.getItem('clientData');
             let clientData = { name: 'Müvekkil', phone: 'Bilgi yok' };
             
@@ -171,7 +189,8 @@
                 }
             }
             
-            // Simulate login process
+            // Giriş Süreci Simülasyonu
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             currentUser = { 
                 type: 'client', 
                 tc: tc, 
@@ -180,7 +199,8 @@
             };
             document.getElementById('client-name').textContent = `Hoş geldiniz, ${currentUser.name}`;
             
-            // Load client's stored chats and notifications
+            // Siteye Sohbet Çekme Bölümü
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             const storedChats = localStorage.getItem(`chats_${tc}`);
             if (storedChats) {
                 clientChats = JSON.parse(storedChats);
@@ -222,7 +242,8 @@
                 return;
             }
             
-            // Store client data for later use
+            // Depoan Müvekkil verisi çekme
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             localStorage.setItem('clientData', JSON.stringify({
                 tc: tc,
                 name: name,
@@ -231,7 +252,8 @@
                 birth: birth
             }));
             
-            // Simulate registration process
+            // Kayıt Olma Süreci Simülasyonu
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             alert('Kayıt başarılı! Giriş yapabilirsiniz.');
             showClientLogin();
         }
@@ -252,7 +274,8 @@
             const sicil = document.getElementById('lawyer-login-sicil').value;
             const password = document.getElementById('lawyer-login-password').value;
             
-            // Find lawyer by sicil
+            // Avukat Sicil Numarası Bulma 
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             const lawyer = lawyers.find(l => l.sicil === sicil);
             if (lawyer) {
                 currentUser = { type: 'lawyer', ...lawyer };
@@ -283,12 +306,14 @@
                 return;
             }
             
-            // Simulate registration process
+            // Kayıt Olma Bölümü Simülasyonu
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             alert('Kayıt başarılı! TBB sicil doğrulaması yapıldıktan sonra giriş yapabilirsiniz.');
             showLawyerLogin();
         }
 
-        // Client Dashboard Functions
+        // Site Panel Bilgileri
+ //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
         function loadLawyers() {
             const resultsContainer = document.getElementById('lawyers-results');
             resultsContainer.innerHTML = '';
@@ -312,12 +337,14 @@
             };
             
             // Dava fiyatlarını göster
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             let priceInfo = '';
             if (selectedCaseType && selectedSpecificCase && lawyer.casePrices[selectedCaseType] && lawyer.casePrices[selectedCaseType][selectedSpecificCase]) {
                 const price = lawyer.casePrices[selectedCaseType][selectedSpecificCase];
                 priceInfo = `<p class="text-sm"><span class="font-medium">${selectedSpecificCase} Ücreti:</span> <span class="text-green-600 font-semibold">${price.toLocaleString()} TL</span></p>`;
             } else if (selectedCaseType && lawyer.casePrices[selectedCaseType]) {
                 // Seçilen dava türündeki tüm fiyatları göster
+                     //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 const cases = lawyer.casePrices[selectedCaseType];
                 const caseList = Object.entries(cases).map(([caseName, price]) => 
                     `<div class="flex justify-between items-center py-1">
@@ -331,6 +358,7 @@
                 </div>`;
             } else {
                 // Tüm uzmanlık alanlarındaki dava türlerini göster
+                     //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 const allCases = [];
                 lawyer.specialties.forEach(specialty => {
                     if (lawyer.casePrices[specialty]) {
@@ -372,13 +400,15 @@
             const specificCaseSelect = document.getElementById('specific-case-filter');
             const selectedCaseType = caseTypeSelect.value;
             
-            // Clear specific case options
+            // Seçilen Filtreleri Temizler
+                 //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
             specificCaseSelect.innerHTML = '<option value="">Tüm Davalar</option>';
             
             if (selectedCaseType) {
                 specificCaseSelect.disabled = false;
                 
                 // Dava türüne göre spesifik davaları ekle
+                     //<!----------------------------------------------------------- TRİDENT --------------------------------------------------------------->
                 const caseOptions = {
                     'aile': ['Boşanma Davası', 'Velayet Davası', 'Nafaka Davası', 'Mal Paylaşımı', 'Evlilik İptali'],
                     'is': ['İşten Çıkarma', 'Mobbing Davası', 'Fazla Mesai Alacağı', 'Kıdem Tazminatı', 'İş Kazası'],
@@ -1385,4 +1415,5 @@
                     e.target.value = e.target.value.replace(/\D/g, '');
                 });
             });
+
         });
